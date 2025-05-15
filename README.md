@@ -101,6 +101,12 @@ Musyka is an AI-powered Spotify playlist generator that helps you create and enh
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+## Contact
+
+For any questions or suggestions, please contact:
+- GitHub: [Raincor5](https://github.com/Raincor5)
+- Email: slava.krot5@gmail.com
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details. 
