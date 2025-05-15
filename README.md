@@ -1,164 +1,106 @@
 # Musyka - AI-Powered Spotify Playlist Generator
 
-Musyka is an intelligent playlist generator that uses AI to create personalized Spotify playlists based on your preferences and mood.
+Musyka is an AI-powered Spotify playlist generator that helps you create and enhance playlists based on natural language prompts. Using GPT models and the Spotify API, Musyka can:
+
+- Generate new playlists from text descriptions
+- Add songs to existing playlists based on your criteria
+- Validate songs to ensure they match your musical preferences
+- Create cohesive playlists with consistent musical styles
 
 ## Features
 
-- AI-powered playlist generation using OpenAI
-- Seamless Spotify integration
-- Modern mobile interface built with Expo/React Native
-- Smart playlist suggestions based on your music taste
-- Secure token management
-- Environment-based configuration
+- **Natural Language Playlist Creation**: Describe the music you want, and let AI find matching songs
+- **Smart Song Validation**: AI evaluates how well each song matches your prompt
+- **Playlist Enhancement**: Add more songs to your existing playlists based on their current style
+- **Context-Aware Recommendations**: Uses your existing playlist songs for more relevant suggestions
 
-## Prerequisites
+## Tech Stack
 
-- Spotify Premium account
-- OpenAI API key
-- Node.js and npm
-- Python 3.8+
+### Backend
+- Flask API
+- Spotify Web API (via Spotipy)
+- OpenAI GPT Models
+- Concurrent processing for performance
 
-## Setup
+### Mobile App
+- React Native
+- Expo
+- TypeScript
+- Spotify Authentication
 
-### 1. Spotify Developer Setup
+## Setup Instructions
 
-1. Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
-2. Create a new application
-3. Add `musyka://auth` to Redirect URIs
-4. Note down your Client ID and Client Secret
+### Backend Setup
 
-### 2. Environment Setup
-
-#### Backend (.env)
-```bash
-cd backend
-cp .env.example .env
-```
-Edit `.env` with your credentials:
-```
-SPOTIFY_CLIENT_ID=your_spotify_client_id
-SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
-OPENAI_API_KEY=your_openai_api_key
-JWT_SECRET=your_random_secret_key
-PORT=5000
-HOST=0.0.0.0
-DEBUG=True
-CORS_ORIGINS=http://localhost:3000,exp://localhost:19000
-```
-
-#### Mobile (.env)
-```bash
-cd mobile
-cp .env.example .env
-```
-Edit `.env` with your credentials:
-```
-API_URL=http://localhost:5000
-SPOTIFY_CLIENT_ID=your_spotify_client_id
-OPENAI_API_KEY=your_openai_api_key
-APP_ENV=development
-```
-
-### 3. Backend Setup
-
-1. Create and activate virtual environment:
+1. Clone the repository
    ```bash
-   cd backend
+   git clone https://github.com/Raincor5/Musyka.git
+   cd Musyka/backend
+   ```
+
+2. Create a virtual environment
+   ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-2. Install dependencies:
+3. Install dependencies
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Start the server:
+4. Create a `.env` file with the following variables:
+   ```
+   SPOTIFY_CLIENT_ID=your_spotify_client_id
+   SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+   OPENAI_API_KEY=your_openai_api_key
+   JWT_SECRET=your_jwt_secret
+   DEBUG=true
+   ```
+
+5. Run the backend
    ```bash
    python app.py
    ```
 
-### 4. Mobile App Setup
+### Mobile App Setup
 
-1. Install dependencies:
+1. Navigate to the mobile app directory
    ```bash
-   cd mobile
+   cd ../mobile-new
+   ```
+
+2. Install dependencies
+   ```bash
    npm install
    ```
 
-2. Start the development server:
-   ```bash
-   npm start
+3. Create a `.env` file with the following variables:
+   ```
+   API_URL=http://localhost:5000
+   SPOTIFY_CLIENT_ID=your_spotify_client_id
+   SPOTIFY_REDIRECT_URI=musyka://auth
+   APP_ENV=development
+   DEBUG=true
    ```
 
-3. Run on your device:
-   - Install Expo Go on your phone
-   - Scan the QR code with:
-     - iOS: Use the Camera app
-     - Android: Use the Expo Go app
-
-## Development
-
-### Backend
-- Uses Flask for the API server
-- Implements Spotify OAuth flow
-- Integrates with OpenAI API
-- Includes logging and error handling
-- Type hints and documentation
-
-### Mobile App
-- Built with Expo/React Native
-- TypeScript for type safety
-- Environment-based configuration
-- Secure token storage
-- Modern UI with React Native Paper
-
-### Using ngrok for Development
-
-To test the app outside your local network, you can use ngrok to create secure tunnels to your local development servers. We've included a script to make this process easier.
-
-1. Install ngrok globally:
+4. Start the app
    ```bash
-   npm install -g ngrok
+   npx expo start
    ```
 
-2. Run the tunnel script:
-   ```bash
-   ./tunnel.sh
-   ```
+## Spotify Developer Setup
 
-The script will:
-- Start an ngrok tunnel for the backend server
-- Automatically update the necessary environment variables
-- Display the ngrok URL for the backend
+1. Create a Spotify Developer account at [developer.spotify.com](https://developer.spotify.com)
+2. Create a new application and add the following redirect URIs:
+   - `musyka://auth` (for mobile app)
+   - `http://localhost:5000/api/auth/spotify/callback` (for local development)
+3. Make sure to configure the proper scopes in your app.py file
 
-Note: The ngrok URL will change each time you restart the tunnel. Make sure to update your Spotify Developer Dashboard with the new redirect URI if needed.
+## Contributing
 
-## Security Notes
-
-- Never commit `.env` files
-- Keep your API keys secure
-- Use environment variables for all sensitive data
-- JWT tokens are used for session management
-- CORS is configured for security
-
-## Troubleshooting
-
-1. **Backend Connection Issues**
-   - Ensure the backend is running
-   - Check if the port is available
-   - Verify CORS settings
-
-2. **Spotify Authentication**
-   - Verify redirect URI in Spotify Dashboard
-   - Check if Spotify credentials are correct
-   - Ensure proper scopes are requested
-
-3. **Mobile App Issues**
-   - Clear app cache
-   - Reinstall dependencies
-   - Check environment variables
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-MIT 
+This project is licensed under the MIT License - see the LICENSE file for details. 
